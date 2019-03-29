@@ -7,6 +7,8 @@
 // make a sound controlled by CC and modulated (on/off) by another CC
 //
 
+// IN PROGRESS
+
 
 // Setup Onboard Dot
 #define NUMPIXELS 1 // Number of LEDs in strip
