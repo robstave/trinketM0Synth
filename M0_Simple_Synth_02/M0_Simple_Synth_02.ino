@@ -8,9 +8,6 @@
 //
 // distinguish between 3 notes C3, D3, E3 for Red, Green Blue and track intensity
 
- 
-
-
 
 // Setup Onboard Dot
 #define NUMPIXELS 1 // Number of LEDs in strip
@@ -46,7 +43,6 @@ void setup() {
 
 void setColor(byte note){
  
- 
    if (note == C3){
     red  = 0xFF;
    }
@@ -58,13 +54,10 @@ void setColor(byte note){
    }
 
    strip.setPixelColor(0, red, green, blue); //set the pixel colors
-   //strip.setPixelColor(0, 0x9F0000); // red
-  strip.show();
+   strip.show();
 }
 
 void clearColor(byte note){
- 
-  
 
    if (note == C3){
     red  = 0x0;
@@ -77,8 +70,7 @@ void clearColor(byte note){
    }
 
    strip.setPixelColor(0, red, green, blue); //set the pixel colors
-   //strip.setPixelColor(0, 0x9F0000); // red
-  strip.show();
+   strip.show();
 }
 
 // 0x9
@@ -109,7 +101,6 @@ void controlChange(byte channel, byte control, byte value) {
 
 
 void loop() {
-
 
   initSequence(); // Blinky intro
 
