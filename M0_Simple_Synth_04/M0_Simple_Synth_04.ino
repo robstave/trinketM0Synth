@@ -3,9 +3,11 @@
 #include <Adafruit_DotStar.h>
 #include "pitchToFrequency.h"
 
-// M0 Trinket Synth - Exercise 03
+// M0 Trinket Synth - Exercise 04
 // Create a Simple LFO controlled by CC
 // Improved
+//
+// Listens to the value of CC and adjusts the period of the dot on the M0
 //
 
 
@@ -29,7 +31,6 @@ uint16_t counter = 0;
 uint8_t state = 0;
 
 uint16_t counterCompare = 100;
-
 
 uint8_t lfoCCValue = 100;
 
