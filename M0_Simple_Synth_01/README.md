@@ -21,6 +21,18 @@ You will need some software to actually connect to the Trinket.  In my case, I a
 
 Ableton is set up so that it recieves ( and broadcasts ) the midi.  Because of this, I can tell if the messages are being sent from the controller.
 
+So I loaded up ableton, hooked them both up and amazingly...M0 Showed up as something I could work with
+
+I set the input as my control surface and the output as MO AND you need the monitor to work.
+
+![Capture1](https://github.com/robstave/trinketM0Synth/blob/master/M0_Simple_Synth_01/images/Capture1.PNG)
+
+
+
+![Capture](https://github.com/robstave/trinketM0Synth/blob/master/M0_Simple_Synth_01/images/Capture.PNG)
+
+ 
+
 The code has three basic handlers
 
 - Note On - Detect a note
