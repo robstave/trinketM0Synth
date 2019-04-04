@@ -5,9 +5,12 @@
 
 // M0 Trinket Synth - Exercise 04
 // Create a Simple LFO controlled by CC
-// Improved
+// Improved - Set the counter independent of the interrupt.  That way, for a very low
+// LFO you do not have to wait until the next interrupt to do anything.
 //
 // Listens to the value of CC and adjusts the period of the dot on the M0
+//
+// Run this and adjust the CC value by experimentation
 //
 
 
@@ -32,7 +35,7 @@ uint8_t state = 0;
 
 uint16_t counterCompare = 100;
 
-uint8_t lfoCCValue = 100;
+uint8_t lfoCCValue = 7;  // <--- set this to whatever your control seems to send
 
 
 // Set timer TC4 to call the TC4_Handler every 1ms-ish (To Calculate)
@@ -105,8 +108,8 @@ void setup() {
   setupTimer4();
 }
 
-# define maxLFO  30
-# define minLFO 200
+# define maxLFO  20   // small counter...decrease to make fastest rate a little faster
+# define minLFO 300  // large counter...increase to make the lowest rate a little slower
 
 // 0xB
 void controlChange(byte channel, byte control, byte value) {
