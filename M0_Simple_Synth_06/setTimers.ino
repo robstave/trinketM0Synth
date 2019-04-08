@@ -21,7 +21,7 @@ void setupTimer4_5() {
                       GCLK_CLKCTRL_ID_TC4_TC5;             // Feed the GCLK0 to TC4 and TC5
   while (GCLK->STATUS.bit.SYNCBUSY);                       // Wait for synchronization
 
-  TC4->COUNT16.CC[0].reg = 100;                           // Set the TC4 CC0 register as the TOP value in match frequency mode
+  TC4->COUNT16.CC[0].reg = 50;                           // Set the TC4 CC0 register as the TOP value in match frequency mode
   while (TC4->COUNT16.STATUS.bit.SYNCBUSY);                // Wait for synchronization
 
   NVIC_SetPriority(TC4_IRQn, 0);    // Set the Nested Vector Interrupt Controller (NVIC) priority for TC4 to 0 (highest)

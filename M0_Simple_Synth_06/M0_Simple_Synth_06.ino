@@ -39,11 +39,14 @@ Adafruit_DotStar strip = Adafruit_DotStar(
 
 // Control channels we are listening for.
 // Run this and watch the serial port while twisting a knob.  Note the values and set them here and recompile/reload the sketch.
-uint8_t CC1LFO = 10;
-uint8_t CC1HF = 114;
 
-uint8_t CC2LFO = 74;
-uint8_t CC2HF = 18;
+// Im my case, Im using the Arturia so set 1 => 1:74  2:10
+uint8_t CC1LFO = 74;
+uint8_t CC1HF = 10;
+
+// Im my case, Im using the Arturia so set 3 => 1:114  2:18
+uint8_t CC2LFO = 18;
+uint8_t CC2HF = 114;
 
 
 volatile uint16_t counterLFO1 = 0;
