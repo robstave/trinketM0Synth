@@ -4,7 +4,7 @@
 #include "pitchToFrequency.h"
 
 // M0 Trinket Synth - Exercise 06
-// make a squarewave sound whose pitch is controlled by two CC and is gated (on/off) by another two CCs acting as an LFOs.
+// make a squarewave synth whose pitch is controlled by two midi CC values and is gated (on/off) by another two CCs acting as an LFOs.
 //
 //  Note some of the boilerplate/extra stuff as been moved to other .ino files.  Arduino IDE just combines them
 //  with the dir filename.ino first and the remaining in alphabetical order.

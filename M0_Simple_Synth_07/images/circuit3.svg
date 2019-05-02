@@ -15,7 +15,7 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.92.2 (5c3e80d, 2017-08-06)"
-   sodipodi:docname="circuit2.svg"
+   sodipodi:docname="circuit3.svg"
    inkscape:export-filename="C:\Users\robst\arduino\githubM0Synth\M0_Simple_Synth_06\images\circuita2.png"
    inkscape:export-xdpi="90"
    inkscape:export-ydpi="90">
@@ -28,9 +28,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="2.0000001"
-     inkscape:cx="80.888351"
-     inkscape:cy="171.16754"
+     inkscape:zoom="4.0000002"
+     inkscape:cx="227.16163"
+     inkscape:cy="167.97724"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -49,7 +49,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -445,28 +445,20 @@
        ry="1.3392974"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
-    <path
-       style="fill:none;stroke:#000000;stroke-width:1.22550237px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 188.05192,817.5625 h -26.91648 l -13.77614,0.66435"
-       id="path4857"
-       inkscape:connector-curvature="0"
-       sodipodi:nodetypes="ccc"
-       inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90" />
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:25.14182091px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.62854546"
-       x="159.75011"
-       y="784.17139"
+       x="153.45984"
+       y="739.66907"
        id="text4861"
        transform="scale(0.96875756,1.03225)"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90"><tspan
          sodipodi:role="line"
          id="tspan4859"
-         x="159.75011"
-         y="784.17139"
-         style="font-size:6.70448589px;stroke-width:0.62854546">LFO on</tspan></text>
+         x="153.45984"
+         y="739.66907"
+         style="font-size:6.70448589px;stroke-width:0.62854546">LFO 1 State</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:25.14182091px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.62854546"
@@ -497,10 +489,10 @@
          style="font-size:6.70448589px;stroke-width:0.62854546">HF 1 CC</tspan></text>
     <path
        style="fill:none;stroke:#000000;stroke-width:1.22550237px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 259.47598,825.53449 h 24.79707 l -0.66437,78.06676 h 18.58323"
+       d="m 266.54499,825.28295 17.72806,0.25154 -0.66437,78.06676 10.29682,-0.16573 v 0"
        id="path4899"
        inkscape:connector-curvature="0"
-       sodipodi:nodetypes="cccc"
+       sodipodi:nodetypes="ccccc"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
     <path
@@ -871,28 +863,20 @@
        ry="1.3392974"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
-    <path
-       style="fill:none;stroke:#000000;stroke-width:1.22550237px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 188.04582,986.7079 h -26.91648 l -13.77614,0.6643"
-       id="path4857-9"
-       inkscape:connector-curvature="0"
-       sodipodi:nodetypes="ccc"
-       inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90" />
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:25.14182091px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.62854546"
-       x="159.74391"
-       y="948.0321"
+       x="314.58139"
+       y="850.39948"
        id="text4861-5"
        transform="scale(0.96875756,1.03225)"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90"><tspan
          sodipodi:role="line"
          id="tspan4859-2"
-         x="159.74391"
-         y="948.0321"
-         style="font-size:6.70448589px;stroke-width:0.62854546">LFO on</tspan></text>
+         x="314.58139"
+         y="850.39948"
+         style="font-size:6.70448589px;stroke-width:0.62854546">Mixer</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:25.14182091px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.62854546"
@@ -923,11 +907,12 @@
          style="font-size:6.70448589px;stroke-width:0.62854546">HF 2 CC</tspan></text>
     <path
        style="fill:none;stroke:#000000;stroke-width:1.22550237px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 259.46988,994.6799 c 24.79707,0 24.79707,0 24.79707,0"
+       d="m 266.53889,994.4283 17.72806,0.2516"
        id="path4899-7"
        inkscape:connector-curvature="0"
        inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90" />
+       inkscape:export-ydpi="90"
+       sodipodi:nodetypes="cc" />
     <path
        style="fill:none;stroke:#000000;stroke-width:1.22550237px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        d="m 188.04582,986.7079 c 25.64483,0.2214 25.64483,0 25.64483,0"
@@ -935,30 +920,71 @@
        inkscape:connector-curvature="0"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
-    <g
-       transform="matrix(1.2788461,0,0,1.336188,191.04096,-319.00379)"
-       id="g4588-3-3"
-       style="stroke-width:0.93749994;stroke-miterlimit:4;stroke-dasharray:none"
-       inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90">
-      <path
-         inkscape:connector-curvature="0"
-         id="rect4564-5-01"
-         d="m 86.583565,911.5145 v 19.19544 h 12.661573 v -0.12162 a 11.103027,9.5391972 0 0 0 10.958832,-9.53462 11.103027,9.5391972 0 0 0 -10.958832,-9.5328 v -0.006 h -0.144195 z"
-         style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.93749994;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
-      <ellipse
-         ry="2.3560407"
-         rx="1.8429643"
-         cy="921.46362"
-         cx="112.76378"
-         id="path4582-8-8"
-         style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.93749994;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
-    </g>
     <path
        style="fill:none;stroke:#000000;stroke-width:1.22550237px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 284.26695,994.6799 c -0.0588,-74.79386 -0.0588,-74.79386 -0.0588,-74.79386 h 17.38432"
+       d="m 284.26695,994.6799 -0.0588,-74.79386 h 9.84369"
        id="path1123"
        inkscape:connector-curvature="0"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       sodipodi:nodetypes="ccc" />
+    <path
+       style="display:inline;fill:none;stroke:#000000;stroke-width:0.93749976px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 188.03846,817.5635 c 0,0 0,0 -21.04748,0 -4.30893,-2.9831 -4.30893,-2.9831 -4.30893,-2.9831"
+       id="path4857-9-0"
+       inkscape:connector-curvature="0"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="display:inline;fill:none;stroke:#000000;stroke-width:0.93749976px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 188.04582,986.7079 c 0,0 0,0 -21.04748,0 -4.30893,-2.9831 -4.30893,-2.9831 -4.30893,-2.9831"
+       id="path4857-9-0-1"
+       inkscape:connector-curvature="0"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:25.14182091px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.62854546"
+       x="136.55537"
+       y="907.94403"
+       id="text4861-6"
+       transform="scale(0.96875757,1.03225)"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
+         sodipodi:role="line"
+         id="tspan4859-20"
+         x="136.55537"
+         y="907.94403"
+         style="font-size:6.70448589px;stroke-width:0.62854546">LFO 2 State</tspan></text>
+    <rect
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.93897629;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect979"
+       width="42.656242"
+       height="33.749996"
+       x="293.90622"
+       y="895.33099"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:37.49999619px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.93749994"
+       x="296.24997"
+       y="917.36224"
+       id="text983"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
+         sodipodi:role="line"
+         id="tspan981"
+         x="296.24997"
+         y="917.36224"
+         style="font-size:19.99999809px;stroke-width:0.93749994">F(x)</tspan></text>
+    <ellipse
+       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.88336247;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path4714-4-3"
+       cx="338.20309"
+       cy="912.44037"
+       rx="2.1905336"
+       ry="2.0538776"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
   </g>
@@ -966,13 +992,6 @@
      inkscape:groupmode="layer"
      id="layer2"
      inkscape:label="Layer 2"
-     style="display:none"
-     sodipodi:insensitive="true"
-     transform="translate(0,-45.000007)">
-    <path
-       style="fill:none;stroke:#000000;stroke-width:0.93749982px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 0.29029784,194.59899 c 0,0 0,0 -21.04748084,0 -4.30893,-2.9831 -4.30893,-2.9831 -4.30893,-2.9831"
-       id="path4857-9-0"
-       inkscape:connector-curvature="0" />
-  </g>
+     style="display:inline"
+     transform="translate(0,-45.000007)" />
 </svg>

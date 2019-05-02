@@ -41,16 +41,15 @@ Adafruit_DotStar strip = Adafruit_DotStar(
 
 // Control channels we are listening for.
 // Run this and watch the serial port while twisting a knob.  Note the values and set them here and recompile/reload the sketch.
-uint8_t CC1HF = 10;
-uint8_t CC1LFO = 74;
-uint8_t CC1LFO_ON = 71;
+uint8_t CC1HF = 10;   // Control HF 1 pitch
+uint8_t CC1LFO = 74;  // Control LFO 1 pitch
+uint8_t CC1LFO_ON = 71;  //  LFO 1 on/off state
 
-uint8_t CC2HF = 114;
-uint8_t CC2LFO = 18;
-uint8_t CC2LFO_ON = 19;
+uint8_t CC2HF = 114; // Control HF 2 pitch
+uint8_t CC2LFO = 18;  // Control LFO 2 pitch
+uint8_t CC2LFO_ON = 19;//  LFO 2 on/off state
 
-
-uint8_t MIX_MODE = 7;
+uint8_t MIX_MODE = 7; // Control Mix Mode pitch
 
 volatile uint8_t mix_mode_value = 10;  // default on at 50/50
 

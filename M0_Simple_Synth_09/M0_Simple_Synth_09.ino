@@ -11,14 +11,10 @@
    HfCC - CC to control pitch
    LfoCC - CC to control LFO Frequency
    LfoOnCC - CC to turn core on/off/LFO  so its always on, always off or squarewave LFO
-   
-   Also another CC for the mixer - Toggle Mixer to be sum/nand/xor
+   CC for the mixer - Toggle Mixer to be sum/nand/xor
 
-   So we are up to 7 knobs.
-   
-   At this point, all the values were getting unmanagable, so lets 
-   make a struct per core.
-  
+   So we had up to 7 knobs.
+
    
    Added:
    a Vibrato effect

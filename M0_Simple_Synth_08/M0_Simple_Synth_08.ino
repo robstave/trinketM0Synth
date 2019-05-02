@@ -73,13 +73,15 @@ typedef struct CoreState {
 // using global memory.  You could use local variables in loop as well if your
 // good with pointers.
 
-// Initialize with a random speed and silence count
+// Initialize with appropriate values
+// Note, we are setting the structs with all the values in the array.  Kinda GoLang-ish.
+//
 CoreState coreArray[] = {
 
 
   {
     //   LFO CC = 10;
-    // initialize at 90
+    // initialize at 90.  The rest of the values in this line are just counter initializations
     10, 0, 90, 0, 91,
 
     //   HF CC = 74;
@@ -91,7 +93,7 @@ CoreState coreArray[] = {
   // CORE 2
   {
     //   HF CC = 114;
-    // initialize at 130
+    // initialize at 130.  You want to pick something differnt than 90 or they will be the same freq
     114, 0, 130, 0, 91,
 
     //   LFO CC = 18;
