@@ -26,11 +26,22 @@ In addition, if you are using the [Arduino mapping function](https://www.arduino
  
 50% of your values take up the first octave.
 
+![Capture1](https://github.com/robstave/trinketM0Synth/blob/master/M0_Simple_Synth_05/images/oneMinusLogPNG.PNG)
+
+Here is a quick diagram.  Say your range for the counters were between 800 ( lowest freq ) and 200.
+If you used a mapping function to map across these bounds,  then the 50% mark should be around 
+
+    (800 - 200)/2 + 200 = 500   Point a.
+
+If 800 represented the lowest note then 400 would be an octave above that.  That means we need to turn the knob past that point just to get to the next octave.
+
 This can be fixed a little by personalizing the Mapping function.  We can fake out an audio taper.
 In this code, we set a point somewhere in the first octave and break it into two mapping functions.
 The effect is that you get an audio style mapping versus linear.
 
-![Capture1](https://github.com/robstave/trinketM0Synth/blob/master/M0_Simple_Synth_05/images/oneMinusLogPNG.PNG)
+A simple IF statement and two mappings allows us to map an octave to say 30% (Point B)
+
+
 
 See ![Here](http://www.resistorguide.com/potentiometer-taper/) for an explaination of the taper.
 
