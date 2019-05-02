@@ -7,13 +7,18 @@
    M0 Trinket Synth - Exercise 09
 
    Previously:
-   make a squarewave sound (2 Cores) with 3 CCs each
+   Two Squarewave oscillator(2 Cores) with 3 CCs each
    HfCC - CC to control pitch
    LfoCC - CC to control LFO Frequency
    LfoOnCC - CC to turn core on/off/LFO  so its always on, always off or squarewave LFO
+   
+   Also another CC for the mixer - Toggle Mixer to be sum/nand/xor
 
-   Also another CC for the mixer
-   Toggle Mixer to be sum/nand/xor
+   So we are up to 7 knobs.
+   
+   At this point, all the values were getting unmanagable, so lets 
+   make a struct per core.
+  
    
    Added:
    a Vibrato effect
@@ -157,6 +162,7 @@ void TC4_Handler()                                         // Interrupt Service 
           coreArray[CORE1].lfoState++;
           if (coreArray[CORE1].lfoState % 2 == 0) {
             coreArray[CORE1].color = 0x00;
+            // coreArray[CORE1].hfTrill = 0;  // sync trill
           } else {
             coreArray[CORE1].color = 0xFF;
           }

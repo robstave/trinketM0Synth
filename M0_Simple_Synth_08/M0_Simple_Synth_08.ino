@@ -7,17 +7,24 @@
    M0 Trinket Synth - Exercise 08
 
    Previously:
-   make a squarewave sound (2 Cores) with 3 CCs each
+   Two Squarewave oscillator(2 Cores) with 3 CCs each
    HfCC - CC to control pitch
    LfoCC - CC to control LFO Frequency
-
-
-   Added:
    LfoOnCC - CC to turn core on/off/LFO  so its always on, always off or squarewave LFO
-   Also another CC for the mixer
-   Toggle Mixer to be sum/nand/xor
+   
+   Also another CC for the mixer - Toggle Mixer to be sum/nand/xor
 
+   So we are up to 7 knobs.
+   
+   At this point, all the values were getting unmanagable, so lets 
+   make a struct per core.
 
+   Added, rebase
+
+   Also, did map the LFO control a bit to have an off/lfo/on mode
+  
+   
+   Technically, nothing new here.  Just a rebase.
 */
 
 
@@ -27,7 +34,7 @@
 //  The code is just doing the squarewaves at the moment with very simple counters.
 //  In the interrupt, we just count the number of ticks here until flipping the bit.
 
-// LFO Counters.  minLFO is actually a high number because its a larger tick to
+// LFO Counter bounds.  A small number means it will take less time to reset the timer (and flip the bit)
 # define maxLFO  40
 # define minLFO 500
 
@@ -71,11 +78,11 @@ CoreState coreArray[] = {
 
 
   {
-    //   HF CC = 10;
+    //   LFO CC = 10;
     // initialize at 90
     10, 0, 90, 0, 91,
 
-    //   LFO CC = 74;
+    //   HF CC = 74;
     74, 0, 90, 0, 91,
 
     //   LFO ON CC = 71;

@@ -16,7 +16,8 @@
 //  The code is just doing the squarewaves at the moment with very simple counters.
 //  In the interrupt, we just count the number of ticks here until flipping the bit.
 
-// LFO Counters.  minLFO is actually a high number because its a larger tick to
+// LFO Counter Bounds.  The higher the number, the longer it takes to count to it, so
+// a high frequency is really indicated with a smaller number.
 # define maxLFO  40
 # define minLFO 500
 
@@ -42,7 +43,6 @@ Adafruit_DotStar strip = Adafruit_DotStar(
 // Run this and watch the serial port while twisting a knob.  Note the values and set them here and recompile/reload the sketch.
 uint8_t CC1 = 7;
 uint8_t CC2 = 114;
-
 
 volatile uint16_t counter = 0;
 volatile uint8_t state = 0;  // LFO Bit On/Off
