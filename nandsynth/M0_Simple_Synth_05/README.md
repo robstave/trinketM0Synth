@@ -4,7 +4,7 @@ Nand Synth
 
 So this is an approximation of the following circuit
 
-![Capture1](https://github.com/robstave/trinketM0Synth/blob/master/M0_Simple_Synth_05/images/circuit.PNG)
+![Capture1](https://github.com/robstave/trinketM0Synth/blob/master/nandsynth/M0_Simple_Synth_05/images/circuit.PNG)
 
 
 The code is really not as complicated as it seems.  We are just really manipulating two counters and applying boolean logic to the results of the timers. The result is sent to a pin to make sound.
@@ -26,7 +26,7 @@ In addition, if you are using the [Arduino mapping function](https://www.arduino
  
 50% of your values take up the first octave.
 
-![Capture1](https://github.com/robstave/trinketM0Synth/blob/master/M0_Simple_Synth_05/images/oneMinusLogPNG.PNG)
+![Capture1](https://github.com/robstave/trinketM0Synth/blob/master/nandsynth/M0_Simple_Synth_05/images/oneMinusLogPNG.PNG)
 
 Here is a quick diagram.  Say your range for the counters were between 800 ( lowest freq ) and 200.
 If you used a mapping function to map across these bounds,  then the 50% mark should be around 

@@ -4,7 +4,7 @@ Continuation of the last sketch, but with two circuits.
 
 The basic equivalent is something in this direction.  Not exactly...but close.
 
-![Capture1](https://github.com/robstave/trinketM0Synth/blob/master/M0_Simple_Synth_06/images/circuita2.PNG)
+![Capture1](https://github.com/robstave/trinketM0Synth/blob/master/nandsynth/M0_Simple_Synth_06/images/circuita2.PNG)
 
 In this case, really, the switch to turn the LFO off and on is really stuck to ON...and we will be playing with that later.  But feel free to tweek whatever.
 

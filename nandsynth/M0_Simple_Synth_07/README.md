@@ -3,7 +3,7 @@
 Modest improvments on 06.
 
 
-![Capture1](https://github.com/robstave/trinketM0Synth/blob/master/M0_Simple_Synth_07/images/circuit3.PNG)
+![Capture1](https://github.com/robstave/trinketM0Synth/blob/master/nandsynth/M0_Simple_Synth_07/images/circuit3.PNG)
 
 Added a knob to control the LFO entirely.  
   - NO LFO, always on

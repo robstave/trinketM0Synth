@@ -25,11 +25,11 @@ So I loaded up ableton, hooked them both up and amazingly...M0 Showed up as some
 
 I set the input as my control surface and the output as MO AND you need the monitor to work.
 
-![Capture1](https://github.com/robstave/trinketM0Synth/blob/master/M0_Simple_Synth_01/images/Capture1.PNG)
+![Capture1](https://github.com/robstave/trinketM0Synth/blob/master/nandsynth/M0_Simple_Synth_01/images/Capture1.PNG)
 
 
 
-![Capture](https://github.com/robstave/trinketM0Synth/blob/master/M0_Simple_Synth_01/images/Capture.PNG)
+![Capture](https://github.com/robstave/trinketM0Synth/blob/master/nandsynth/M0_Simple_Synth_01/images/Capture.PNG)
 
  
 
