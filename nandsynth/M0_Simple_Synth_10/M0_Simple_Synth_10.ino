@@ -1,23 +1,23 @@
 
 #include "MIDIUSB.h"
 #include <Adafruit_DotStar.h>
-#include "pitchToFrequency.h"
+/*
+    #include "pitchToFrequency.h"
+*/
 
 /**
-   M0 Trinket Synth - Exercise 09
+   M0 Trinket Synth - Exercise 10
 
-   Previously:
    Two Squarewave oscillator(2 Cores) with 3 CCs each
-   HfCC - CC to control pitch
-   LfoCC - CC to control LFO Frequency
-   LfoOnCC - CC to turn core on/off/LFO  so its always on, always off or squarewave LFO
-   CC for the mixer - Toggle Mixer to be sum/nand/xor
+    - HfCC - CC to control pitch
+    - LfoCC - CC to control LFO Frequency
+    - LfoOnCC - CC to turn core on/off/LFO  so its always on, always off or squarewave LFO
 
+
+   CC for the mixer - Toggle Mixer to be sum/nand/xor
    So we had up to 7 knobs.
 
-   
-   Added:
-   a Vibrato effect.  But just one one of the cores/voices
+
 */
 
 /*
@@ -33,8 +33,7 @@
 //  The code is just doing the squarewaves at the moment with very simple counters.
 //  In the interrupt, we just count the number of ticks here until flipping the bit.
 
-// LFO Counters.  minLFO is actually a high number because it takes more ticks to flip the
-// counter.
+// LFO Counters.  minLFO is actually a high number because its a larger tick to
 # define maxLFO  40
 # define minLFO 500
 
@@ -48,60 +47,73 @@
 # define CORE1 0
 # define CORE2 1
 
+# define ALWAYS_ON 1
+# define LFO_ON 2
+# define ALWAYS_OFF 3
+
+# define CC_LFO1 10
+# define CC_HF1 74
+# define CC_LFO_STATE1 71
+# define CC_TRILL1 44
+
+# define CC_LFO2 114
+# define CC_HF2 18
+# define CC_LFO_STATE2 19
+# define CC_TRILL2 45
+
+# define CC_MIX_MODE 7
+
+volatile uint8_t mix_mode_value = 10;  // default on at 50/50
+
 
 typedef struct CoreState {
   uint8_t lfoCC;
   uint32_t lfoCounter;
-  uint32_t lfoCounterCompare;
-  uint8_t lfoState;
-  uint8_t lfoValueCompare;
+  uint8_t lfoState;  // counts each time the compare value is set.
+  uint8_t lfoCounterCompare;
 
 
   uint8_t hfCC;
   uint32_t hfCounter;
-  uint32_t hfCounterCompare;
-  uint8_t hfState;
-  uint8_t hfValueCompare;
-  uint8_t hfTrill;
+  uint8_t hfState; // counts each time the compare value is set.  Lowest bit is on/off
+  uint8_t hfCounterCompare;
+  boolean doTrill;
+  uint8_t hfTrill; // modulation value to add to hfValueCompare
 
 
   uint8_t lfoOnCC;
   uint8_t lfoSwitchState;
-
   uint8_t color;
-
-
 };
+
 
 // using global memory.  You could use local variables in loop as well if your
 // good with pointers.
 
 // Initialize with a random speed and silence count
-CoreState coreArray[] = {
-
-
+volatile CoreState coreArray[] = {
   {
-    //   HF CC = 10;
-    // initialize at 90
-    10, 0, 90, 0, 91,
+    //   LFO CC = 10;
+    // initialize at 91
+    CC_LFO1, 0, 0, random(maxLFO, minLFO) ,
 
-    //   LFO CC = 74;
-    74, 0, 90, 0, 91, 0,
+    //   HF CC = 74;
+    CC_HF1, 0, 0, random(maxHF, minHF), false, 0,
 
-    //   LFO ON CC = 71;
-    71, 77, 0
+    //   LFO STATE CC = 71;
+    CC_LFO_STATE1, LFO_ON, 0x00
   },
   // CORE 2
   {
-    //   HF CC = 114;
+    //   LFO CC = 114;
     // initialize at 130
-    114, 0, 130, 0, 91,
+    CC_LFO2, 0, 0, random(maxLFO, minLFO),
 
     //   LFO CC = 18;
-    18, 0, 100, 0, 91, 0,
+    CC_HF2, 0, 0, random(maxHF, minHF), false, 0,
 
     //   LFO ON CC = 19;
-    19, 77, 0
+    CC_LFO_STATE2, LFO_ON, 0x00
   },
 };
 
@@ -120,8 +132,7 @@ Adafruit_DotStar strip = Adafruit_DotStar(
 #endif
 
 
-uint8_t MIX_MODE_CC = 7;
-volatile uint8_t mix_mode_value = 10;  // default on at 50/50
+
 
 
 /*
@@ -134,7 +145,7 @@ volatile uint8_t mix_mode_value = 10;  // default on at 50/50
 
     DID I just copy paste the code twice...yes
     Force of habit.  Making it a function only adds a level of indirection to the interrupt code (wasted CPU)
-    and 
+    and
     Sketch uses 14156 bytes (5%) of program storage space. Maximum is 262144 bytes.
 
     so its not like we are hurting for program storage
@@ -147,78 +158,58 @@ void TC4_Handler()                                         // Interrupt Service 
   {
     // Put your timer overflow (OVF) code here....
 
-    if (coreArray[CORE1].lfoSwitchState > 100) {
+    if (coreArray[CORE1].lfoSwitchState == ALWAYS_ON) {
       // LFO CODE.  Always on
-      coreArray[CORE1].color = 0xFF;
       coreArray[CORE1].lfoState = 127;
     } else {
-      if (coreArray[CORE1].lfoSwitchState > 50) {
+      if (coreArray[CORE1].lfoSwitchState == LFO_ON) {
         // LFO CODE.  When we hit the counter, flip the state bool (and the color of the light)
 
         if (coreArray[CORE1].lfoCounter > coreArray[CORE1].lfoCounterCompare) {
           coreArray[CORE1].lfoState++;
-          if (coreArray[CORE1].lfoState % 2 == 0) {
-            coreArray[CORE1].color = 0x00;
-            // coreArray[CORE1].hfTrill = 0;  // sync trill
-          } else {
-            coreArray[CORE1].color = 0xFF;
-          }
-
           coreArray[CORE1].lfoCounter = 0;
         }
         coreArray[CORE1].lfoCounter++;
       } else {
         // LFO CODE.  Always off
-        coreArray[CORE1].color = 0x00;
         coreArray[CORE1].lfoState = 0;
       }
     }
 
-    if (coreArray[CORE2].lfoSwitchState > 100) {
+    if (coreArray[CORE2].lfoSwitchState == ALWAYS_ON) {
       // LFO CODE.  Always on
-
-      coreArray[CORE2].color = 0xFF;
       coreArray[CORE2].lfoState = 127;
     } else {
-      if (coreArray[CORE2].lfoSwitchState > 50) {
+      if (coreArray[CORE2].lfoSwitchState == LFO_ON) {
         // LFO CODE.  When we hit the counter, flip the state bool (and the color of the light)
 
         if (coreArray[CORE2].lfoCounter > coreArray[CORE2].lfoCounterCompare) {
           coreArray[CORE2].lfoState++;
-          if (coreArray[CORE2].lfoState % 2 == 0) {
-
-            coreArray[CORE2].color = 0x00;
-          } else {
-            coreArray[CORE2].color = 0xFF;
-          }
-
           coreArray[CORE2].lfoCounter = 0;
         }
         coreArray[CORE2].lfoCounter++;
       } else {
         // LFO CODE.  Always off
-        coreArray[CORE2].color = 0x00;
         coreArray[CORE2].lfoState = 0;
       }
     }
-
 
     TC4->COUNT16.INTFLAG.reg = TC_INTFLAG_OVF;             // Clear the OVF interrupt flag
   }
 }
 
 /*
- * High Frequency Interrupt
- * This is the interrupt that controls the actual signal
- * 
- * Frequency is determined by countdown timers.  The Larger the number, the lower the freq.
- * LFO is checked here as well as basically an on/off thing.
- * 
- * Value is finally mixed with one of three strategies
- *  - NAND
- *  - SUM
- *  - XOR
- */
+   High Frequency Interrupt
+   This is the interrupt that controls the actual signal
+
+   Frequency is determined by countdown timers.  The Larger the number, the lower the freq.
+   LFO is checked here as well as basically an on/off thing.
+
+   Value is finally mixed with one of three strategies
+    - NAND
+    - SUM
+    - XOR
+*/
 
 void TC5_Handler()                                         // Interrupt Service Routine (ISR) for timer TC4
 {
@@ -234,11 +225,14 @@ void TC5_Handler()                                         // Interrupt Service 
       coreArray[CORE1].hfState++;
       coreArray[CORE1].hfCounter = 0;
 
-      if (coreArray[CORE1].hfTrill > 8) {
-        coreArray[CORE1].hfTrill = 0;
-      }
-      if (coreArray[CORE1].hfState % 32 == 1) {
-        coreArray[CORE1].hfTrill++;
+      // Modulate if trill is on.  Really, we are just messing with the counters
+      if (coreArray[CORE1].doTrill == true) {
+        if (coreArray[CORE1].hfTrill > 8) {
+          coreArray[CORE1].hfTrill = 0;
+        }
+        if (coreArray[CORE1].hfState % 32 == 1) {
+          coreArray[CORE1].hfTrill++;
+        }
       }
     }
     coreArray[CORE1].hfCounter++;
@@ -246,9 +240,20 @@ void TC5_Handler()                                         // Interrupt Service 
     boolean value1 = ( (coreArray[CORE1].lfoState % 2 == 1)  && (coreArray[CORE1].hfState % 2 == 1));
 
     //CORE 2
-    if (coreArray[CORE2].hfCounter > coreArray[CORE2].hfCounterCompare) {
+    if (coreArray[CORE2].hfCounter > (coreArray[CORE2].hfCounterCompare + coreArray[CORE2].hfTrill)) {
       coreArray[CORE2].hfState++;
       coreArray[CORE2].hfCounter = 0;
+
+      // Modulate if trill is on.  Really, we are just messing with the counters
+      if (coreArray[CORE2].doTrill == true) {
+        if (coreArray[CORE2].hfTrill > 8) {
+          coreArray[CORE2].hfTrill = 0;
+        }
+        if (coreArray[CORE2].hfState % 32 == 1) {
+          coreArray[CORE2].hfTrill++;
+        }
+      }
+
     }
     coreArray[CORE2].hfCounter++;
 
@@ -331,46 +336,33 @@ void controlChange(byte channel, byte control, byte value) {
   logData(0xB,   channel,   control,   value) ;  // optional
 
 
+  // Is LFO CC
   if (control == coreArray[CORE1].lfoCC) {
 
-    if (coreArray[CORE1].lfoValueCompare == value) {
-      return;
-    }
-    coreArray[CORE1].lfoValueCompare = value;
+
     coreArray[CORE1].lfoCounterCompare = mapMidiLowBudget(value,  minLFO, maxLFO);
     return;
   }
 
   if (control == coreArray[CORE2].lfoCC) {
-    if (coreArray[CORE2].lfoValueCompare == value) {
-      return;
-    }
-    coreArray[CORE2].lfoValueCompare = value;
     coreArray[CORE2].lfoCounterCompare = mapMidiLowBudget(value,  minLFO, maxLFO);
     return;
   }
 
+  // Is HF CC
   if (control == coreArray[CORE1].hfCC) {
-    if (coreArray[CORE1].hfValueCompare == value) {
-      return;
-    }
-    coreArray[CORE1].hfValueCompare = value;
     coreArray[CORE1].hfCounterCompare = mapMidiLowBudget(value, minHF, maxHF);
     return;
   }
 
 
   if (control == coreArray[CORE2].hfCC) {
-    if (coreArray[CORE2].hfValueCompare == value) {
-      return;
-    }
-    coreArray[CORE2].hfValueCompare = value;
     coreArray[CORE2].hfCounterCompare = mapMidiLowBudget(value, minHF, maxHF);
     return;
   }
 
 
-  if (control == MIX_MODE_CC) {
+  if (control == CC_MIX_MODE) {
     Serial.print("mix_mode_value:");
     Serial.println(value);
     mix_mode_value = value;
@@ -383,13 +375,70 @@ void controlChange(byte channel, byte control, byte value) {
   // 100 + NO LFO always on
 
   if (control == coreArray[CORE1].lfoOnCC) {
-    coreArray[CORE1].lfoSwitchState = value;
+    if (value > 100) {
+      coreArray[CORE1].lfoSwitchState = ALWAYS_ON;
+    } else {
+      if (value  > 50) {
+        coreArray[CORE1].lfoSwitchState = LFO_ON;
+      } else {
+        coreArray[CORE1].lfoSwitchState = ALWAYS_OFF;
+      }
+    }
+
   }
 
   if (control == coreArray[CORE2].lfoOnCC) {
-    coreArray[CORE2].lfoSwitchState = value;
+    if (value > 100) {
+      coreArray[CORE2].lfoSwitchState = ALWAYS_ON;
+    } else {
+      if (value  > 50) {
+        coreArray[CORE2].lfoSwitchState = LFO_ON;
+      } else {
+        coreArray[CORE2].lfoSwitchState = ALWAYS_OFF;
+      }
+    }
   }
 
+}
+
+// 0x9
+void noteOn(byte channel, byte pitch, byte velocity) {
+
+  // Channel 0 check is optional.  Im not sure why Im getting stray notes on initialization
+  if (channel == 0) {
+    if (pitch == CC_TRILL1) {
+      Serial.print("Note on 1:");
+      Serial.println(pitch);
+      coreArray[CORE1].doTrill = true;
+
+    }
+    if (pitch == CC_TRILL2) {
+      Serial.print("Note on 2:");
+      Serial.println(pitch);
+      coreArray[CORE2].doTrill = true;
+    }
+  }
+}
+
+// 0x8
+void noteOff(byte channel, byte pitch, byte velocity) {
+  if (channel == 0) {
+    if (pitch == CC_TRILL1) {
+      Serial.print("Note off 1:");
+      Serial.println(pitch);
+      coreArray[CORE1].doTrill = false;
+      coreArray[CORE1].hfTrill = 0;
+
+
+    }
+    if (pitch == CC_TRILL2) {
+      Serial.print("Note on 2:");
+      Serial.println(pitch);
+      coreArray[CORE2].doTrill = false;
+      coreArray[CORE2].hfTrill = 0;
+
+    }
+  }
 }
 
 
@@ -401,6 +450,8 @@ void loop() {
 
   while (true) {
 
+    setColor(CORE1);
+    setColor(CORE2);
     strip.setPixelColor(0, coreArray[CORE1].color, coreArray[CORE2].color, 0); //set the pixel colors
 
     strip.show();
@@ -428,9 +479,27 @@ void loop() {
         );
         break;
 
+      case 0x9:
+        noteOn(
+          rx.byte1 & 0xF,  //channel
+          rx.byte2,        //pitch
+          rx.byte3         //velocity
+        );
+
+        break;
+
+      case 0x8:
+        noteOff(
+          rx.byte1 & 0xF,  //channel
+          rx.byte2,        //pitch
+          rx.byte3         //velocity
+        );
+
+        break;
+
       default:
         // If your curious
-        //logData(rx.header,   byte1,   byte2,   byte3) ;
+        //logData(rx.header,   rx.byte1,   rx.byte2,   rx.byte3) ;
 
         break;
     }

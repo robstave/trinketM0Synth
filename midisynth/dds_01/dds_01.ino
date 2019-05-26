@@ -1,0 +1,119 @@
+
+ 
+
+#include "avr/pgmspace.h"
+
+
+PROGMEM  prog_uchar tri256[]  = {0x2, 0x4, 0x6, 0x8, 0xa, 0xc, 0xe, 0x10, 0x12, 0x14, 0x16, 0x18, 0x1a, 0x1c, 0x1e, 0x20, 0x22, 0x24, 0x26, 0x28, 0x2a, 0x2c, 0x2e, 0x30, 0x32, 0x34, 0x36, 0x38, 0x3a, 0x3c, 0x3e, 0x40, 0x42, 0x44, 0x46, 0x48, 0x4a, 0x4c, 0x4e, 0x50, 0x52, 0x54, 0x56, 0x58, 0x5a, 0x5c, 0x5e, 0x60, 0x62, 0x64, 0x66, 0x68, 0x6a, 0x6c, 0x6e, 0x70, 0x72, 0x74, 0x76, 0x78, 0x7a, 0x7c, 0x7e, 0x80, 0x81, 0x83, 0x85, 0x87, 0x89, 0x8b, 0x8d, 0x8f, 0x91, 0x93, 0x95, 0x97, 0x99, 0x9b, 0x9d, 0x9f, 0xa1, 0xa3, 0xa5, 0xa7, 0xa9, 0xab, 0xad, 0xaf, 0xb1, 0xb3, 0xb5, 0xb7, 0xb9, 0xbb, 0xbd, 0xbf, 0xc1, 0xc3, 0xc5, 0xc7, 0xc9, 0xcb, 0xcd, 0xcf, 0xd1, 0xd3, 0xd5, 0xd7, 0xd9, 0xdb, 0xdd, 0xdf, 0xe1, 0xe3, 0xe5, 0xe7, 0xe9, 0xeb, 0xed, 0xef, 0xf1, 0xf3, 0xf5, 0xf7, 0xf9, 0xfb, 0xfd, 0xff, 0xfd, 0xfb, 0xf9, 0xf7, 0xf5, 0xf3, 0xf1, 0xef, 0xed, 0xeb, 0xe9, 0xe7, 0xe5, 0xe3, 0xe1, 0xdf, 0xdd, 0xdb, 0xd9, 0xd7, 0xd5, 0xd3, 0xd1, 0xcf, 0xcd, 0xcb, 0xc9, 0xc7, 0xc5, 0xc3, 0xc1, 0xbf, 0xbd, 0xbb, 0xb9, 0xb7, 0xb5, 0xb3, 0xb1, 0xaf, 0xad, 0xab, 0xa9, 0xa7, 0xa5, 0xa3, 0xa1, 0x9f, 0x9d, 0x9b, 0x99, 0x97, 0x95, 0x93, 0x91, 0x8f, 0x8d, 0x8b, 0x89, 0x87, 0x85, 0x83, 0x81, 0x80, 0x7e, 0x7c, 0x7a, 0x78, 0x76, 0x74, 0x72, 0x70, 0x6e, 0x6c, 0x6a, 0x68, 0x66, 0x64, 0x62, 0x60, 0x5e, 0x5c, 0x5a, 0x58, 0x56, 0x54, 0x52, 0x50, 0x4e, 0x4c, 0x4a, 0x48, 0x46, 0x44, 0x42, 0x40, 0x3e, 0x3c, 0x3a, 0x38, 0x36, 0x34, 0x32, 0x30, 0x2e, 0x2c, 0x2a, 0x28, 0x26, 0x24, 0x22, 0x20, 0x1e, 0x1c, 0x1a, 0x18, 0x16, 0x14, 0x12, 0x10, 0xe, 0xc, 0xa, 0x8, 0x6, 0x4, 0x2, 0x0};
+
+
+PROGMEM  prog_uchar sine256[]  = {
+  127, 130, 133, 136, 139, 143, 146, 149, 152, 155, 158, 161, 164, 167, 170, 173,
+  176, 178, 181, 184, 187, 190, 192, 195, 198, 200, 203, 205, 208, 210, 212, 215,
+  217, 219, 221, 223, 225, 227, 229, 231, 233, 234, 236, 238, 239, 240, 242, 243,
+  244, 245, 247, 248, 249, 249, 250, 251, 252, 252, 253, 253, 253, 254, 254, 254,
+
+  254, 254, 254, 254, 253, 253, 253, 252, 252, 251, 250, 249, 249, 248, 247, 245,
+  244, 243, 242, 240, 239, 238, 236, 234, 233, 231, 229, 227, 225, 223, 221, 219,
+  217, 215, 212, 210, 208, 205, 203, 200, 198, 195, 192, 190, 187, 184, 181, 178,
+  176, 173, 170, 167, 164, 161, 158, 155, 152, 149, 146, 143, 139, 136, 133, 130,
+
+  127, 124, 121, 118, 115, 111, 108, 105, 102, 99,  96,  93,  90,  87,  84,  81,
+  78,  76,  73,  70,  67,  64,  62,  59,  56,  54,  51,  49,  46,  44,  42,  39,
+  37,  35,  33,  31,  29,  27,  25,  23,  21,  20,  18,  16,  15,  14,  12,  11,
+  10,  9,   7,   6,   5,   5,   4,   3,   2,   2,   1,   1,   1,   0,   0,   0,
+
+  0,   0,   0,   0,   1,   1,   1,   2,   2,   3,   4,   5,   5,   6,   7,   9,
+  10,  11,  12,  14,  15,  16,  18,  20,  21,  23,  25,  27,  29,  31,  33,  35,
+  37,  39,  42,  44,  46,  49,  51,  54,  56,  59,  62,  64,  67,  70,  73,  76,
+  78,  81,  84,  87,  90,  93,  96,  99,  102, 105, 108, 111, 115, 118, 121, 124
+
+};
+ 
+// Fix Serial for SAMD
+#if defined(ARDUINO_SAMD_ZERO) && defined(SERIAL_PORT_USBVIRTUAL)
+// Required for Serial on Zero based boards
+#define Serial SERIAL_PORT_USBVIRTUAL
+#endif
+
+
+double dfreq;
+const double refclk = 35780;  // tweak this number to get a good reference.  BAsically, test that you are getting 440 hz
+
+volatile uint32_t phaccu;   // phase accumulator
+volatile uint32_t tword_m;  // dds tuning word m
+volatile byte counter;  //
+
+
+
+
+void TC4_Handler()                                         // Interrupt Service Routine (ISR) for timer TC4
+{
+  // Check for overflow (OVF) interrupt
+  if (TC4->COUNT16.INTFLAG.bit.OVF && TC4->COUNT16.INTENSET.bit.OVF)
+  {
+    // Put your timer overflow (OVF) code here....
+
+
+    TC4->COUNT16.INTFLAG.reg = TC_INTFLAG_OVF;             // Clear the OVF interrupt flag
+  }
+}
+
+/*
+   High Frequency Interrupt
+   This is the interrupt that controls the actual signal
+
+
+*/
+
+void TC5_Handler()                                         // Interrupt Service Routine (ISR) for timer TC4
+{
+  // Check for overflow (OVF) interrupt
+  if (TC5->COUNT16.INTFLAG.bit.OVF && TC5->COUNT16.INTENSET.bit.OVF)
+  {
+
+    phaccu = phaccu + tword_m; // soft DDS, phase accu with 32 bits
+    uint32_t icnt = phaccu >> 24;   // use upper 8 bits for phase accu as frequency information
+    // read value fron ROM sine table and send to PWM DAC
+
+    uint32_t value = pgm_read_byte_near(sine256 + icnt);
+
+    // value = value << 1;
+
+
+    analogWrite(A0, value);
+
+
+    counter++;
+    if (counter % 2 == 0) {
+      digitalWrite(A2, true);
+    } else {
+      digitalWrite(A2, false);
+    }
+
+
+
+    TC5->COUNT16.INTFLAG.reg = TC_INTFLAG_OVF;             // Clear the OVF interrupt flag
+
+  }
+}
+
+void setup() {
+
+  Serial.begin(115200);
+  Serial.println("Setting up");
+  analogWriteResolution(10);
+  dfreq = 440.0;                  // initial output frequency = 440 Hz
+  tword_m = pow(2, 32) * dfreq / refclk; // calulate DDS new tuning word
+
+  counter = 0;
+
+  setupTimer4_5();
+
+}
+
+void loop() {
+
+  Serial.println("Enter Loop:");
+  while (true) { }
+}
