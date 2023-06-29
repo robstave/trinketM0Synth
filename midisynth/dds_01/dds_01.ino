@@ -1,5 +1,5 @@
 
- 
+ //dds01 
 
 #include "avr/pgmspace.h"
 
@@ -76,13 +76,12 @@ void TC5_Handler()                                         // Interrupt Service 
     // read value fron ROM sine table and send to PWM DAC
 
     uint32_t value = pgm_read_byte_near(sine256 + icnt);
-
-    // value = value << 1;
-
+ 
 
     analogWrite(A0, value);
 
 
+    // toggle a bit too...just to measure things.
     counter++;
     if (counter % 2 == 0) {
       digitalWrite(A2, true);
